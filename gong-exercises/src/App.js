@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import LeftSideBarComponent from "./components/leftSideBar";
 
 function App() {
   return (
-    <div className="App">
-      <h1>
-        Hello Gong!
-      </h1>
+    <div className="App" id='twitter'>
+        <LeftSideBarComponent/>
     </div>
   );
 }
