@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LeftSideBarComponent from "./LeftSideBarComponent";
 import NotificationComponent from "./NotificationComponent";
 import RightSideBarComponent from "./RightSideBarComponent";
-import TwitterApi from "./TwitterApi";
+import TwitterApi from "../server/TwitterApi";
 import ProfilePage from "./ProfilePage";
 
 class Twitter extends Component {

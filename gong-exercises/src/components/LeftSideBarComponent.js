@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonComponent from "./shared/ButtonComponent";
+import monk from '../assets/monk.svg';
+import envelope from '../assets/envelope.svg';
+import twitter from '../assets/twitter.svg';
+import home from '../assets/home.svg';
+import telescope from '../assets/telescope.svg';
+import notification from '../assets/notification.svg';
+import bookmark from '../assets/bookmark.svg';
+import list from '../assets/list.svg';
+import ellipsis from '../assets/ellipsis.svg';
 
 class LeftSideBarComponent extends Component {
     render() {
         return (
             <div className="left-side-bar">
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/twitter.svg'}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/home.svg'} title={"Home"}
+                <ButtonComponent class={'tweeter-default-button'} src={twitter}/>
+                <ButtonComponent class={'tweeter-default-button'} src={home} title={"Home"}
                                  onClick={this.props.onHomeClick}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/telescope.svg'} title={"Explore"}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/notification.svg'}
+                <ButtonComponent class={'tweeter-default-button'} src={telescope} title={"Explore"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={notification}
                                  title={"Notifications"}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/envelope.svg'} title={"Messages"}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/bookmark.svg'} title={"Bookmarks"}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/list.svg'} title={"Lists"}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/monk.svg'} title={"Profile"}
+                <ButtonComponent class={'tweeter-default-button'} src={envelope} title={"Messages"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={bookmark} title={"Bookmarks"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={list} title={"Lists"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={monk} title={"Profile"}
                                  onClick={this.props.onProfilePageClick}/>
-                <ButtonComponent class={'tweeter-default-button'} src={'assets/ellipsis.svg'} title={"More"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={ellipsis} title={"More"}/>
                 <ButtonComponent class={'tweet-button'} title={"Tweet"}/>
             </div>
         );

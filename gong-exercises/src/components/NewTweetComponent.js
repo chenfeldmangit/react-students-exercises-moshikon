@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonComponent from "./shared/ButtonComponent";
+import monk from '../assets/monk.svg';
+import stars from '../assets/stars.svg';
+import image from '../assets/image.svg';
+import gif from '../assets/gif.svg';
+import list from '../assets/list.svg';
+import mask from '../assets/mask.svg';
 
 const profileData = {
     officialName: 'moshiko.n',
@@ -40,11 +46,11 @@ class NewTweetComponent extends Component {
                     <div className="tweet-container-header-title">
                         <h2>Home</h2>
                         <button className="tweeter-default-button">
-                            <img src="../assets/stars.svg" width="20"/>
+                            <img src={stars} width="20"/>
                         </button>
                     </div>
                     <div className="tweet-container-header-context">
-                        <img className="profile-image" src="../assets/monk.svg" width="40" alt="profile"/>
+                        <img className="profile-image" src={monk} width="40" alt="profile"/>
                         <label>
                             <input className="tweet-container-header-context-textarea"
                                    placeholder="What's happening?" value={this.state.text} onChange={(text) =>
@@ -53,10 +59,10 @@ class NewTweetComponent extends Component {
                     </div>
                     <div className="tweet-container-header-buttons">
                         <div className="tweet-container-footer">
-                            <ButtonComponent class={'tweeter-default-button'} src={'assets/image.svg'}/>
-                            <ButtonComponent class={'tweeter-default-button'} src={'assets/gif.svg'}/>
-                            <ButtonComponent class={'tweeter-default-button'} src={'assets/list.svg'}/>
-                            <ButtonComponent class={'tweeter-default-button'} src={'assets/mask.svg'}/>
+                            <ButtonComponent class={'tweeter-default-button'} src={image}/>
+                            <ButtonComponent class={'tweeter-default-button'} src={gif}/>
+                            <ButtonComponent class={'tweeter-default-button'} src={list}/>
+                            <ButtonComponent class={'tweeter-default-button'} src={mask}/>
                             <ButtonComponent class={'tweet-button'} onClick={this.prepareTweet} title="Tweet"/>
                         </div>
                     </div>

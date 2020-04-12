@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BoxComponent from "./shared/BoxComponent";
 import SearchBoxComponent from "./shared/SearchBoxComponent";
+import telescope from '../assets/telescope.svg';
+import monk from '../assets/monk.svg';
 
 class RightSideBarComponent extends Component {
     constructor(props) {
@@ -17,7 +19,7 @@ class RightSideBarComponent extends Component {
     render() {
         return (
             <div className="right-side-bar">
-                <SearchBoxComponent img="assets/telescope.svg" text="Search Twitter" onSearch={this.onSearch}
+                <SearchBoxComponent img={telescope} text="Search Twitter" onSearch={this.onSearch}
                                     searchText={this.state.searchText}/>
                 <BoxComponent title={'Trends for you'}
                               items={[{ title: 'Trending', hashtag: '#gong', numOfTweets: '10000k Tweets' }]}/>
@@ -26,7 +28,7 @@ class RightSideBarComponent extends Component {
                                   title: 'Monk',
                                   hashtag: '@monk.gong',
                                   numOfTweets: '2h',
-                                  img: 'assets/monk.svg',
+                                  img: { monk },
                                   btn: 'Follow'
                               }]}/>
             </div>

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import ButtonComponent from "./shared/ButtonComponent";
+import monk from '../assets/monk.svg';
+import exportSvg from '../assets/export.svg';
+import heart from '../assets/heart.svg';
+import switchSvg from '../assets/switch.svg';
+import envelope from '../assets/envelope.svg';
 
 export default class TweetComponent extends Component {
 
@@ -17,17 +22,17 @@ export default class TweetComponent extends Component {
             <div>
                 <div className="tweet-container">
                     <div className="tweet-container-header">
-                        <img className="profile-image" src="assets/monk.svg" width="40" alt="profile"/>
+                        <img className="profile-image" src={monk} width="40" alt="profile"/>
                         <span className="tweet-header"> Monk</span>
                         <span className="tweet-sub-header"> @monk.gong</span>
                         <span className="tweet-sub-header"> 2h</span>
                     </div>
                     <p className="notification-tweet-context">{tweet.textarea}</p>
                     <div className="notification-tweet-buttons">
-                        <ButtonComponent class={'like-button'} src={'assets/envelope.svg'}/>
-                        <ButtonComponent class={'like-button'} src={'assets/switch.svg'}/>
-                        <ButtonComponent class={className} src={'assets/heart.svg'} onClick={this.tweetUpdate}/>
-                        <ButtonComponent class={'like-button'} src={'assets/export.svg'}/>
+                        <ButtonComponent class={'like-button'} src={envelope}/>
+                        <ButtonComponent class={'like-button'} src={switchSvg}/>
+                        <ButtonComponent class={className} src={heart} onClick={this.tweetUpdate}/>
+                        <ButtonComponent class={'like-button'} src={exportSvg}/>
                     </div>
                 </div>
             </div>

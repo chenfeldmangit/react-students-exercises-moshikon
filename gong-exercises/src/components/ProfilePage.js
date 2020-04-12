@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ButtonComponent from "./shared/ButtonComponent";
+import monk from '../assets/monk.svg';
+import back from '../assets/back.svg';
 
 const PROFILE_DATA = {
     officialName: 'moshiko.n',
@@ -47,7 +49,7 @@ class ProfilePage extends Component {
             <>
                 <div className="profile-page">
                     <div>
-                        <img alt="Back" width="20" src="../assets/back.svg" onClick={onHomeClick}/>
+                        <img alt="Back" width="20" src={back} onClick={onHomeClick}/>
                         <div className='name-n-tweet'>
                             <span className='name'>{profileData.officialName}</span>
                             <span className='tweets'>{profileData.numOfTweet} Tweets</span>
@@ -56,7 +58,7 @@ class ProfilePage extends Component {
                     <img src="https://pbs.twimg.com/profile_banners/2587834920/1584763990/600x200" className='cover'
                          alt=''/>
                     <div className='profile-page-mid'>
-                        <img height='100' width='100' src="../assets/monk.svg" className='profile profile-page-image'
+                        <img height='100' width='100' src={monk} className='profile profile-page-image'
                              alt=''/>
                         <ButtonComponent class="follow-button" onClick={this.toggleModal} title="Edit"/>
                     </div>
