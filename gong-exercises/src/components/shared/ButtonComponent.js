@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../scss/mainT.css';
+import '../../scss/mainT.css';
 
 class ButtonComponent extends Component {
     render() {
         return (
-            <div className="tweeter-default-button">
-                <img src={this.props.src} width="25" alt={this.props.title}/>
+            <button className={this.props.class} onClick={this.props.onClick}>
+                {this.props.src ? <img src={this.props.src} width="25" alt={this.props.title}/> : null}
                 <span>{this.props.title}</span>
-            </div>
+
+            </button>
         );
     }
 }
 
 ButtonComponent.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 ButtonComponent.defaulpropTypes = {
     title: '',
+    src: '',
+    onClick: () => {},
 };
 
 export default ButtonComponent;

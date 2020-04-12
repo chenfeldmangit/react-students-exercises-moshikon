@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import LeftSideBarComponent from "./components/leftSideBar";
+import Twitter from "./components/Twitter";
 
 function App() {
   return (
     <div className="App" id='twitter'>
-        <LeftSideBarComponent/>
+<Twitter/>
     </div>
   );
 }
