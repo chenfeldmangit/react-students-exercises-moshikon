@@ -10,7 +10,6 @@ function BoxComponent({ title, items }) {
                 {title}
             </h2>
             <hr/>
-            {items[0].img && <img className="profile-image" src={items[0].img} width="40" alt="profile"/>}
             <div className="right-side-bar-container-trends">
                 <span> {items[0].title}</span>
                 <strong> {items[0].hashtag}</strong>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BoxComponent from "./shared/BoxComponent";
 import SearchBoxComponent from "./shared/SearchBoxComponent";
 import telescope from '../assets/telescope.svg';
-import monk from '../assets/monk.svg';
 
 class RightSideBarComponent extends Component {
     constructor(props) {
@@ -28,7 +27,6 @@ class RightSideBarComponent extends Component {
                                   title: 'Monk',
                                   hashtag: '@monk.gong',
                                   numOfTweets: '2h',
-                                  img: { monk },
                                   btn: 'Follow'
                               }]}/>
             </div>
