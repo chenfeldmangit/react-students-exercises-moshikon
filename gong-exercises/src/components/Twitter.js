@@ -11,12 +11,13 @@ export default function Twitter(props) {
         PROFILE: 'profile',
     };
 
-    const [state, setState] = useState({
+    const [twitterData, setTwitterData] = useState({
         tweets: [],
         filteredTweets: [],
         searchText: '',
-        showPage: PAGES.HOME
     });
+
+    const [currentPage, setCurrentPage] = useState(PAGES.HOME);
 
     const doOnMount = () => {
         getTweets();
@@ -26,39 +27,39 @@ export default function Twitter(props) {
     const getTweets = async () => {
         console.log("getTweets called");
         const tweets = await TwitterApi.getTweets();
-        setState({ ...state, tweets, filteredTweets: tweets });
+        setTwitterData({ ...twitterData, tweets, filteredTweets: tweets });
     };
 
     const setTweets = async (tweets) => {
         try {
             await TwitterApi.setTweets(tweets);
-            setState({ ...state, tweets });
-            setFilteredTweets(state.searchText);
+            setTwitterData({ ...twitterData, tweets });
+            setFilteredTweets(twitterData.searchText);
         } catch (error) {
             throw error;
         }
     };
 
     const setFilteredTweets = (searchText) => {
-        const filteredTweets = state.tweets.filter(({ textarea }) => textarea.includes(searchText));
-        setState({ ...state, searchText, filteredTweets });
+        const filteredTweets = twitterData.tweets.filter(({ textarea }) => textarea.includes(searchText));
+        setTwitterData({ ...twitterData, searchText, filteredTweets });
     };
 
     const onProfilePageClick = () => {
-        setState({ ...state, showPage: PAGES.PROFILE })
+        setCurrentPage(PAGES.PROFILE);
     };
 
     const onHomeClick = () => {
-        setState({ ...state, showPage: PAGES.HOME })
+        setCurrentPage(PAGES.HOME);
     };
 
     const renderMainPage = () => {
-        switch (state.showPage) {
+        switch (currentPage) {
             case PAGES.HOME:
-                return <NotificationComponent tweets={state.tweets} updateTweets={setTweets}
-                                              filteredTweets={state.filteredTweets}/>
+                return <NotificationComponent tweets={twitterData.tweets} updateTweets={setTweets}
+                                              filteredTweets={twitterData.filteredTweets}/>;
             case PAGES.PROFILE:
-                return <ProfilePage onHomeClick={onHomeClick}/>
+                return <ProfilePage onHomeClick={onHomeClick}/>;
             default:
                 return null
 
@@ -71,7 +72,7 @@ export default function Twitter(props) {
         <>
             <LeftSideBarComponent onProfilePageClick={onProfilePageClick} onHomeClick={onHomeClick}/>
             {renderMainPage()}
-            <RightSideBarComponent tweets={state.tweets} updateTweets={setFilteredTweets}/>
+            <RightSideBarComponent tweets={twitterData.tweets} updateTweets={setFilteredTweets}/>
         </>
     );
 }
