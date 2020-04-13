@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ButtonComponent from "./shared/ButtonComponent";
 import monk from '../assets/monk.svg';
 import back from '../assets/back.svg';
+import GongModal from "./shared/GongModal";
 
 const PROFILE_DATA = {
     officialName: 'moshiko.n',
@@ -40,6 +41,15 @@ class ProfilePage extends Component {
             return { profileData: state.form, openEditModal: false }
         });
     };
+    renderUserData = (profileData) => (
+        <div className='profile-context-container'>
+            <span className='official-name'>{profileData.officialName}</span>
+            <span className='nick-name'>{profileData.nickName}</span>
+            <span className='date'>{profileData.dateOfCreation}</span>
+            <span className='following'>{profileData.numOfFollowing} Following</span>
+            <span className='followers'>{profileData.numOfFollowers} Followers</span>
+        </div>
+    )
 
     render() {
         const { onHomeClick } = this.props;
@@ -62,24 +72,11 @@ class ProfilePage extends Component {
                              alt=''/>
                         <ButtonComponent class="follow-button" onClick={this.toggleModal} title="Edit"/>
                     </div>
-                    <div className='profile-context-container'>
-                        <span className='official-name'>{profileData.officialName}</span>
-                        <span className='nick-name'>{profileData.nickName}</span>
-                        <span className='date'>{profileData.dateOfCreation}</span>
-                        <span className='following'>{profileData.numOfFollowing} Following</span>
-                        <span className='followers'>{profileData.numOfFollowers} Followers</span>
-                    </div>
+                    {this.renderUserData(profileData)}
                 </div>
-                {this.state.openEditModal && <div id="myModal" className="modal">
-                    <div className="modal-content">
-                        <h3>Official Name:</h3>
-                        <input className="tweeter-search-container-input" type="search" placeholder="name"
-                               value={this.state.form.officialName}
-                               onChange={(text) => this.onValueChange(text.target.value)}/>
-                        <ButtonComponent title="Submit" onClick={this.updateProfile}/>
-                        <ButtonComponent title="Cancel" onClick={this.toggleModal}/>
-                    </div>
-                </div>
+                {this.state.openEditModal &&
+                (<GongModal value={this.state.form.officialName} title="Official Name:" onSubmit={this.updateProfile}
+                           onCancel={this.toggleModal} onValueChange={this.onValueChange}/>)
                 }
             </>
         );

@@ -30,7 +30,7 @@ export default function NotificationComponent(props) {
         <div className="notification-container">
             <NewTweetComponent onAddTweet={addTweet}/>
             {/*{noTweets ? <div id='loading'>TWEET!</div> : null}*/}
-            {props.filteredTweets?.map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
+            {props.tweets.filter(({ textarea }) => textarea.includes(props.searchText)).map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
                                                                       key={tweet.tweetId}/>)}
         </div>);
 }
