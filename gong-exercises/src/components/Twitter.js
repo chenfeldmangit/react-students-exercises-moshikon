@@ -1,68 +1,77 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftSideBarComponent from "./LeftSideBarComponent";
 import NotificationComponent from "./NotificationComponent";
 import RightSideBarComponent from "./RightSideBarComponent";
 import TwitterApi from "../server/TwitterApi";
 import ProfilePage from "./ProfilePage";
 
-class Twitter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tweets: [],
-            filteredTweets: [],
-            searchText: ''
-        }
-    }
-
-    getTweets = async () => {
-        console.log("getTweets called");
-        const tweets = await TwitterApi.getTweets();
-        this.setState({ tweets, filteredTweets: tweets });
+export default function Twitter(props) {
+    const PAGES = {
+        HOME: 'home',
+        PROFILE: 'profile',
     };
 
-    setTweets = async (tweets) => {
+    const [state, setState] = useState({
+        tweets: [],
+        filteredTweets: [],
+        searchText: '',
+        showPage: PAGES.HOME
+    });
+
+    const doOnMount = () => {
+        getTweets();
+        setInterval(() => getTweets(), 50000);
+    };
+
+    const getTweets = async () => {
+        console.log("getTweets called");
+        const tweets = await TwitterApi.getTweets();
+        setState({ ...state, tweets, filteredTweets: tweets });
+    };
+
+    const setTweets = async (tweets) => {
         try {
             await TwitterApi.setTweets(tweets);
-            this.setState({ tweets });
-            this.setFilteredTweets(this.state.searchText);
+            setState({ ...state, tweets });
+            setFilteredTweets(state.searchText);
         } catch (error) {
             throw error;
         }
     };
 
-    setFilteredTweets = async (searchText) => {
-        const filteredTweets = this.state.tweets.filter(({ textarea }) => textarea.includes(searchText));
-        this.setState({ searchText, filteredTweets });
+    const setFilteredTweets = (searchText) => {
+        const filteredTweets = state.tweets.filter(({ textarea }) => textarea.includes(searchText));
+        setState({ ...state, searchText, filteredTweets });
     };
 
-
-    componentDidMount() {
-        this.getTweets();
-        setInterval(() => this.getTweets(), 50000);
-    }
-
-    onProfilePageClick = () => {
-        this.setState({ navToProfilePage: true })
+    const onProfilePageClick = () => {
+        setState({ ...state, showPage: PAGES.PROFILE })
     };
 
-    onHomeClick = () => {
-        this.setState({ navToProfilePage: false })
+    const onHomeClick = () => {
+        setState({ ...state, showPage: PAGES.HOME })
     };
 
-    render() {
-        return (
-            <>
-                <LeftSideBarComponent onProfilePageClick={this.onProfilePageClick} onHomeClick={this.onHomeClick}/>
-                {this.state.navToProfilePage ? <ProfilePage onHomeClick={this.onHomeClick}/> :
-                    <NotificationComponent tweets={this.state.tweets} updateTweets={this.setTweets}
-                                           filteredTweets={this.state.filteredTweets}/>}
-                <RightSideBarComponent tweets={this.state.tweets} updateTweets={this.setFilteredTweets}/>
-            </>
-        );
-    }
+    const renderMainPage = () => {
+        switch (state.showPage) {
+            case PAGES.HOME:
+                return <NotificationComponent tweets={state.tweets} updateTweets={setTweets}
+                                              filteredTweets={state.filteredTweets}/>
+            case PAGES.PROFILE:
+                return <ProfilePage onHomeClick={onHomeClick}/>
+            default:
+                return null
+
+        }
+    };
+
+    useEffect(doOnMount, []);
+
+    return (
+        <>
+            <LeftSideBarComponent onProfilePageClick={onProfilePageClick} onHomeClick={onHomeClick}/>
+            {renderMainPage()}
+            <RightSideBarComponent tweets={state.tweets} updateTweets={setFilteredTweets}/>
+        </>
+    );
 }
-
-Twitter.propTypes = {};
-
-export default Twitter;

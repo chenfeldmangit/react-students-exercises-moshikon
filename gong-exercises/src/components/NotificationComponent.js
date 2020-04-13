@@ -1,48 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NewTweetComponent from "./NewTweetComponent";
 import TweetComponent from "./TweetComponent";
 
-class NotificationComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-    onLikeTweet = (tweetId) => {
-        const { tweets } = this.props;
+export default function NotificationComponent(props) {
+    const onLikeTweet = (tweetId) => {
+        const { tweets } = props;
         let tweetToUpdateIndex = tweets.findIndex((tweet) => tweet.tweetId === Number(tweetId));
         tweets[tweetToUpdateIndex].like = !tweets[tweetToUpdateIndex].like;
-        this.props.updateTweets(tweets);
+        props.updateTweets(tweets);
     };
 
-    addTweet = (tweet) => {
+    const addTweet = (tweet) => {
         const { textarea } = tweet;
         let tweetsUpdated = [];
         let tweetId = 0;
-        const { tweets } = this.props;
+        const { tweets } = props;
         if (!!tweets) {
             tweetsUpdated = tweets;
             tweetId = tweetsUpdated.length;
             tweetId = tweetId++;
         }
 
-        tweetsUpdated.push({ tweetId, textarea, like: false });
-        this.props.updateTweets(tweetsUpdated);
+        tweetsUpdated.unshift({ tweetId, textarea, like: false });
+        props.updateTweets(tweetsUpdated);
     };
 
-    render() {
-        const { filteredTweets } = this.props;
 
-        return (
-            <div className="notification-container">
-                <NewTweetComponent onAddTweet={this.addTweet}/>
-                {/*{noTweets ? <div id='loading'>TWEET!</div> : null}*/}
-                {filteredTweets?.reverse().map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={this.onLikeTweet} key={tweet.tweetId}/>)}
-            </div>
-        );
-    }
+    return (
+        <div className="notification-container">
+            <NewTweetComponent onAddTweet={addTweet}/>
+            {/*{noTweets ? <div id='loading'>TWEET!</div> : null}*/}
+            {props.filteredTweets?.map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
+                                                                      key={tweet.tweetId}/>)}
+        </div>);
 }
 
-NotificationComponent.propTypes = {};
-
-export default NotificationComponent;

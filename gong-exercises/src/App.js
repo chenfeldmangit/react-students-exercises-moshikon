@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Twitter from "./components/Twitter";
+import './scss/main.css';
 
 function App() {
   return (
