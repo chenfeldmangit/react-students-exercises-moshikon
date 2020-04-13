@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ButtonComponent from "./shared/ButtonComponent";
-import monk from '../assets/monk.svg';
-import exportSvg from '../assets/export.svg';
-import heart from '../assets/heart.svg';
-import switchSvg from '../assets/switch.svg';
-import envelope from '../assets/envelope.svg';
+import ButtonComponent from "../../../shared/components/ButtonComponent";
+import monk from '../../../assets/monk.svg';
+import exportSvg from '../../../assets/export.svg';
+import heart from '../../../assets/heart.svg';
+import switchSvg from '../../../assets/switch.svg';
+import envelope from '../../../assets/envelope.svg';
 
 export default class TweetComponent extends Component {
 

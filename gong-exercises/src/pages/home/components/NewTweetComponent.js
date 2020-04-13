@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ButtonComponent from "./shared/ButtonComponent";
-import monk from '../assets/monk.svg';
-import stars from '../assets/stars.svg';
-import image from '../assets/image.svg';
-import gif from '../assets/gif.svg';
-import list from '../assets/list.svg';
-import mask from '../assets/mask.svg';
+import ButtonComponent from "../../../shared/components/ButtonComponent";
+import monk from '../../../assets/monk.svg';
+import stars from '../../../assets/stars.svg';
+import image from '../../../assets/image.svg';
+import gif from '../../../assets/gif.svg';
+import list from '../../../assets/list.svg';
+import mask from '../../../assets/mask.svg';
 
 const profileData = {
     officialName: 'moshiko.n',

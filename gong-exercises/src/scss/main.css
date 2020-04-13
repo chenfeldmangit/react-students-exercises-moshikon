@@ -179,29 +179,35 @@
   justify-content: space-between;
   align-items: center;
 }
+#twitter .main-page,
 #twitter .profile-page {
   width: 45%;
   margin-left: 25%;
   border: 1px solid lightgray;
 }
+#twitter .main-page .profile-page-mid,
 #twitter .profile-page .profile-page-mid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+#twitter .main-page .name-n-tweet,
 #twitter .profile-page .name-n-tweet {
   display: flex;
   flex-direction: column;
   margin-left: 1em;
 }
+#twitter .main-page .profile-page-image,
 #twitter .profile-page .profile-page-image {
   border-radius: 50px;
   margin-top: -3em;
   background-color: grey;
 }
+#twitter .main-page .cover,
 #twitter .profile-page .cover {
   width: 100%;
 }
+#twitter .main-page .profile-context-container,
 #twitter .profile-page .profile-context-container {
   display: flex;
   flex-direction: column;
@@ -209,6 +215,7 @@
 }
 #twitter .profile-image {
   border-radius: 20px;
+  width: 40px;
 }
 
 /* The Modal (background) */

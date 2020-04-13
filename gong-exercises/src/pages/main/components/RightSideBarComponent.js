@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import BoxComponent from "./shared/BoxComponent";
-import SearchBoxComponent from "./shared/SearchBoxComponent";
-import telescope from '../assets/telescope.svg';
+import BoxComponent from "../../../shared/components/BoxComponent";
+import SearchBoxComponent from "../../../shared/components/SearchBoxComponent";
+import telescope from '../../../assets/telescope.svg';
 
 class RightSideBarComponent extends Component {
     constructor(props) {

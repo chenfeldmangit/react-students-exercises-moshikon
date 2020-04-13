@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import LeftSideBarComponent from "./LeftSideBarComponent";
-import NotificationComponent from "./NotificationComponent";
+import TweetsCenter from "../../home/components/TweetsCenter";
 import RightSideBarComponent from "./RightSideBarComponent";
-import TwitterApi from "../server/TwitterApi";
-import ProfilePage from "./ProfilePage";
-import { PAGES } from "../strings/TwitterStrings";
+import TwitterApi from "../../../server/TwitterApi";
+import ProfilePage from "../../profile/components/ProfilePage";
+import { PAGES } from "../../../shared/strings/TwitterStrings";
+import NotificationPage from "../../notification/components/NotificationsPage";
+import monk from '../../../assets/monk.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 export default function Twitter(props) {
     const [twitterData, setTwitterData] = useState({
@@ -46,13 +49,23 @@ export default function Twitter(props) {
         setCurrentPage(PAGES.HOME);
     };
 
+    const onNotificationClick = () => {
+        setCurrentPage(PAGES.NOTIFICATION);
+    };
+
     const renderMainPage = () => {
         switch (currentPage) {
             case PAGES.HOME:
-                return <NotificationComponent tweets={twitterData.tweets} updateTweets={setTweets}
-                                              searchText={twitterData.searchText}/>;
+                return <TweetsCenter tweets={twitterData.tweets} updateTweets={setTweets}
+                                     searchText={twitterData.searchText}/>;
             case PAGES.PROFILE:
                 return <ProfilePage onHomeClick={onHomeClick}/>;
+            case PAGES.NOTIFICATION:
+                return <NotificationPage
+                    notifications={[
+                        { id: 0, type: 'follow', user: { name: 'monk', img: monk }},
+                        { id: 1, type: 'like', user: { name: 'monk', img: monk }, text: 'bla bla bla' }
+                        ]}/>;
             default:
                 return null
 
@@ -63,7 +76,8 @@ export default function Twitter(props) {
 
     return (
         <>
-            <LeftSideBarComponent onProfilePageClick={onProfilePageClick} onHomeClick={onHomeClick}/>
+            <LeftSideBarComponent onProfilePageClick={onProfilePageClick} onHomeClick={onHomeClick}
+                                  onNotificationClick={onNotificationClick}/>
             {renderMainPage()}
             <RightSideBarComponent tweets={twitterData.tweets} updateTweets={setSearchText}/>
         </>

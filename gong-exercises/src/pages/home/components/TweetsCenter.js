@@ -2,7 +2,7 @@ import React from 'react';
 import NewTweetComponent from "./NewTweetComponent";
 import TweetComponent from "./TweetComponent";
 
-export default function NotificationComponent(props) {
+export default function TweetsCenter(props) {
     const onLikeTweet = (tweetId) => {
         const { tweets } = props;
         let tweetToUpdateIndex = tweets.findIndex((tweet) => tweet.tweetId === Number(tweetId));

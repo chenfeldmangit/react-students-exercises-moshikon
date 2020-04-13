@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ButtonComponent from "./shared/ButtonComponent";
-import monk from '../assets/monk.svg';
-import back from '../assets/back.svg';
-import GongModal from "./shared/GongModal";
+import ButtonComponent from "../../../shared/components/ButtonComponent";
+import monk from '../../../assets/monk.svg';
+import back from '../../../assets/back.svg';
+import GongModal from "../../../shared/components/GongModal";
 
 const PROFILE_DATA = {
     officialName: 'moshiko.n',
@@ -72,7 +72,7 @@ class ProfilePage extends Component {
                              alt=''/>
                         <ButtonComponent class="follow-button" onClick={this.toggleModal} title="Edit"/>
                     </div>
-                    {this.renderUserData(profileData)}
+                    { this.renderUserData(profileData) }
                 </div>
                 {this.state.openEditModal &&
                 (<GongModal value={this.state.form.officialName} title="Official Name:" onSubmit={this.updateProfile}
