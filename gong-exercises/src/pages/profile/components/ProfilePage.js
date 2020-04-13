@@ -49,17 +49,16 @@ class ProfilePage extends Component {
             <span className='following'>{profileData.numOfFollowing} Following</span>
             <span className='followers'>{profileData.numOfFollowers} Followers</span>
         </div>
-    )
+    );
 
     render() {
-        const { onHomeClick } = this.props;
         const { profileData } = this.state;
 
         return (
             <>
                 <div className="profile-page">
                     <div>
-                        <img alt="Back" width="20" src={back} onClick={onHomeClick}/>
+                        <img alt="Back" width="20" src={back} onClick={this.props.history.goBack}/>
                         <div className='name-n-tweet'>
                             <span className='name'>{profileData.officialName}</span>
                             <span className='tweets'>{profileData.numOfTweet} Tweets</span>

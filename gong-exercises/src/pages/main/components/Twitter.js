@@ -53,31 +53,27 @@ export default function Twitter(props) {
         setCurrentPage(PAGES.NOTIFICATION);
     };
 
-    const renderMainPage = () => {
-        switch (currentPage) {
-            case PAGES.HOME:
-                return <TweetsCenter tweets={twitterData.tweets} updateTweets={setTweets}
-                                     searchText={twitterData.searchText}/>;
-            case PAGES.PROFILE:
-                return <ProfilePage onHomeClick={onHomeClick}/>;
-            case PAGES.NOTIFICATION:
-                return <NotificationPage
-                    notifications={[
-                        { id: 0, type: 'follow', user: { name: 'monk', img: monk }},
-                        { id: 1, type: 'like', user: { name: 'monk', img: monk }, text: 'bla bla bla' }
-                        ]}/>;
-            default:
-                return null
-
-        }
-    };
+    const renderMainPage = () => (
+        <Switch>
+            <Route path='/' component={() => <TweetsCenter tweets={twitterData.tweets} updateTweets={setTweets}
+                                                           searchText={twitterData.searchText}/>} exact/>
+            <Route path='/profile' component={ProfilePage}/>
+            <Route path='/notifications' component={() => <NotificationPage
+                notifications={[{ id: 0, type: 'follow', user: { name: 'monk', img: monk } }, {
+                    id: 1,
+                    type: 'like',
+                    user: { name: 'monk', img: monk },
+                    text: 'bla bla bla'
+                }]}/>}/>
+            <Route component={Error}/>
+        </Switch>
+    );
 
     useEffect(doOnMount, []);
 
     return (
         <>
-            <LeftSideBarComponent onProfilePageClick={onProfilePageClick} onHomeClick={onHomeClick}
-                                  onNotificationClick={onNotificationClick}/>
+            <LeftSideBarComponent/>
             {renderMainPage()}
             <RightSideBarComponent tweets={twitterData.tweets} updateTweets={setSearchText}/>
         </>

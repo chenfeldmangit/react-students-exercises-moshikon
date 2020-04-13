@@ -2,12 +2,15 @@ import React from 'react';
 import './App.css';
 import Twitter from "./pages/main/components/Twitter";
 import './scss/main.scss';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App" id='twitter'>
-<Twitter/>
-    </div>
+      <BrowserRouter>
+          <div className="App" id='twitter'>
+              <Twitter/>
+          </div>
+      </BrowserRouter>
   );
 }
 
