@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-const twitter = 'twitter';
+export function useLocalStorage(key) {
 
-class TwitterApi extends Component {
-    static getTweets = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() =>
-                    resolve(JSON.parse(localStorage.getItem(twitter)))
-                , 500);
-        });
-    };
+    function handleLocalStorageObject(tweets) {
+        localStorage.setItem(key, JSON.stringify(tweets));
+        setLocalStorageObject(tweets);
+    }
 
-    static setTweets = (tweets) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() =>
-                    resolve(localStorage.setItem(twitter, JSON.stringify(tweets)))
-                , 0);
-        });
-    };
+    function geJsonFromLocalStorage() {
+        let item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : item;
+    }
+
+    const [localStorageObject, setLocalStorageObject] = useState(geJsonFromLocalStorage());
+
+    return [localStorageObject, handleLocalStorageObject];
 }
-
-export default TwitterApi;

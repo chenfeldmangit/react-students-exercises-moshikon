@@ -1,10 +1,12 @@
 import React from 'react';
 import NewTweetComponent from "./NewTweetComponent";
 import TweetComponent from "./TweetComponent";
+import { useLocalStorage } from "../../../server/TwitterApi";
 
-export default function TweetsCenter(props) {
+export default function NewsFeed(props) {
+    const tweets = useLocalStorage('twitter')[0];
+
     const onLikeTweet = (tweetId) => {
-        const { tweets } = props;
         let tweetToUpdateIndex = tweets.findIndex((tweet) => tweet.tweetId === Number(tweetId));
         tweets[tweetToUpdateIndex].like = !tweets[tweetToUpdateIndex].like;
         props.updateTweets(tweets);
@@ -14,7 +16,7 @@ export default function TweetsCenter(props) {
         const { textarea } = tweet;
         let tweetsUpdated = [];
         let tweetId = 0;
-        const { tweets } = props;
+
         if (!!tweets) {
             tweetsUpdated = tweets;
             tweetId = tweetsUpdated.length;
@@ -30,7 +32,9 @@ export default function TweetsCenter(props) {
         <div className="notification-container">
             <NewTweetComponent onAddTweet={addTweet}/>
             {/*{noTweets ? <div id='loading'>TWEET!</div> : null}*/}
-            {props.tweets.filter(({ textarea }) => textarea.includes(props.searchText)).map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
+            {tweets?.filter(({ textarea }) => {
+                return textarea.includes(props.searchText)
+            }).map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
                                                                       key={tweet.tweetId}/>)}
         </div>);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Twitter from "./pages/main/components/Twitter";
 import './scss/main.scss';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
