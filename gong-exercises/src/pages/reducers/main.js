@@ -6,7 +6,7 @@ console.log('mainReducer.js start');
 
 const mainReducer = combineReducers({
     user: userReducer,
-    twitter: newsFeedReducer
+    newsFeed: newsFeedReducer
 });
 
 export default mainReducer;

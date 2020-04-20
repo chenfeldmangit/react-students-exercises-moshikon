@@ -4,7 +4,8 @@ import Tweet from "./Tweet";
 
 export default function NewsFeed(props) {
     console.log('NewsFeed load');
-    const { tweets, getTweets } = props;
+    const { newsFeed, getTweets } = props;
+    const { tweets } = newsFeed;
 
     useEffect(() => {
         console.log('Twitter useEffect');

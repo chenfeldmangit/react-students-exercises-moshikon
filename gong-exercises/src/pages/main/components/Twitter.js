@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftSideBar from "./LeftSideBar";
 import RightSideBar from "./RightSideBar";
 import ProfilePage from "../../profile/components/ProfilePage";
@@ -10,6 +10,10 @@ import NewsFeedContainer from "../../home/containers/NewsFeedContainer";
 
 export default function Twitter(props) {
     console.log('Twitter load');
+
+    if (props.user.userName != null){
+        console.log(`hello ${props.user.userName}`);
+    }
 
     const [twitterData, setTwitterData] = useState({
         searchText: '',
@@ -34,7 +38,6 @@ export default function Twitter(props) {
             <Route component={Error}/>
         </Switch>
     );
-
     return (
         <>
             <LeftSideBar/>

@@ -3,7 +3,7 @@ import * as twitterActions from '../actions/newsFeedActions';
 import NewsFeed from "../components/NewsFeed";
 
 const mapStateToProps = (state, ownProps) => ({
-    tweets: state.twitter.tweets
+    newsFeed: state.newsFeed,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
