@@ -1,15 +1,22 @@
-import React from 'react';
-import NewTweetComponent from "./NewTweetComponent";
-import TweetComponent from "./TweetComponent";
-import { useLocalStorage } from "../../../server/TwitterApi";
+import React, { useEffect } from 'react';
+import NewTweet from "./NewTweet";
+import Tweet from "./Tweet";
 
 export default function NewsFeed(props) {
-    const tweets = useLocalStorage('twitter')[0];
+    console.log('NewsFeed load');
+    const { tweets, getTweets } = props;
+
+    useEffect(() => {
+        console.log('Twitter useEffect');
+        getTweets();
+    }, [getTweets]);
 
     const onLikeTweet = (tweetId) => {
         let tweetToUpdateIndex = tweets.findIndex((tweet) => tweet.tweetId === Number(tweetId));
-        tweets[tweetToUpdateIndex].like = !tweets[tweetToUpdateIndex].like;
-        props.updateTweets(tweets);
+        // deep copy
+        const newTweets = JSON.parse(JSON.stringify(tweets));
+        newTweets[tweetToUpdateIndex].like = !newTweets[tweetToUpdateIndex].like;
+        props.likeTweet(newTweets);
     };
 
     const addTweet = (tweet) => {
@@ -18,24 +25,24 @@ export default function NewsFeed(props) {
         let tweetId = 0;
 
         if (!!tweets) {
-            tweetsUpdated = tweets;
+            // deep copy
+            tweetsUpdated = JSON.parse(JSON.stringify(tweets));
             tweetId = tweetsUpdated.length;
             tweetId = tweetId++;
         }
 
         tweetsUpdated.unshift({ tweetId, textarea, like: false });
-        props.updateTweets(tweetsUpdated);
+        props.setTweet(tweetsUpdated);
     };
 
 
     return (
         <div className="notification-container">
-            <NewTweetComponent onAddTweet={addTweet}/>
-            {/*{noTweets ? <div id='loading'>TWEET!</div> : null}*/}
-            {tweets?.filter(({ textarea }) => {
+            <NewTweet onAddTweet={addTweet}/>
+            {!tweets ? <div id='loading'>YOUR FIRST TWEET ARE WAITING!</div> : tweets.filter(({ textarea }) => {
                 return textarea.includes(props.searchText)
-            }).map((tweet) => <TweetComponent tweet={tweet} onLikeTweet={onLikeTweet}
-                                                                      key={tweet.tweetId}/>)}
+            }).map((tweet) => <Tweet tweet={tweet} onLikeTweet={onLikeTweet}
+                                     key={tweet.tweetId}/>)}
         </div>);
 }
 

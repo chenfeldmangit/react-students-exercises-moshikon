@@ -6,7 +6,7 @@ import heart from '../../../assets/heart.svg';
 import switchSvg from '../../../assets/switch.svg';
 import envelope from '../../../assets/envelope.svg';
 
-export default class TweetComponent extends Component {
+export default class Tweet extends Component {
 
     tweetUpdate = () => {
         this.props.onLikeTweet(this.props.tweet?.tweetId)
@@ -40,6 +40,6 @@ export default class TweetComponent extends Component {
     }
 }
 
-TweetComponent.propTypes = {};
+Tweet.propTypes = {};
 
-TweetComponent.defaultProps = {};
+Tweet.defaultProps = {};

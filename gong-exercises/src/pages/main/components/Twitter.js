@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
-import LeftSideBarComponent from "./LeftSideBarComponent";
-import NewsFeed from "../../home/components/NewsFeed";
-import RightSideBarComponent from "./RightSideBarComponent";
-import { useLocalStorage } from "../../../server/TwitterApi";
+import LeftSideBar from "./LeftSideBar";
+import RightSideBar from "./RightSideBar";
 import ProfilePage from "../../profile/components/ProfilePage";
 import NotificationPage from "../../notification/components/NotificationsPage";
+import loginContainer from "../../login/containers/LoginContainer";
 import monk from '../../../assets/monk.svg';
 import { Route, Switch } from 'react-router-dom';
+import NewsFeedContainer from "../../home/containers/NewsFeedContainer";
 
 export default function Twitter(props) {
-    // const tweets = useGetLocalStorage('twitter');
-    const setTweetsHook = useLocalStorage('twitter')[1];
+    console.log('Twitter load');
 
     const [twitterData, setTwitterData] = useState({
         searchText: '',
     });
-
-    const setTweets = async (tweets) => {
-        try {
-            setTweetsHook(tweets);
-        } catch (error) {
-            throw error;
-        }
-    };
 
     const setSearchText = (searchText) => {
         setTwitterData({ ...twitterData, searchText });
@@ -30,8 +21,8 @@ export default function Twitter(props) {
 
     const renderMainPage = () => (
         <Switch>
-            <Route path='/' component={() => <NewsFeed updateTweets={setTweets}
-                                                       searchText={twitterData.searchText}/>} exact/>
+            <Route path='/' component={loginContainer} exact/>
+            <Route path='/home' component={() => <NewsFeedContainer searchText={twitterData.searchText}/>}/>
             <Route path='/profile' component={ProfilePage}/>
             <Route path='/notifications' component={() => <NotificationPage
                 notifications={[{ id: 0, type: 'follow', user: { name: 'monk', img: monk } }, {
@@ -46,9 +37,9 @@ export default function Twitter(props) {
 
     return (
         <>
-            <LeftSideBarComponent/>
+            <LeftSideBar/>
             {renderMainPage()}
-            <RightSideBarComponent updateTweets={setSearchText}/>
+            <RightSideBar updateTweets={setSearchText}/>
         </>
     );
 }

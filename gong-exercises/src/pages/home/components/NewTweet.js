@@ -20,7 +20,7 @@ const profileData = {
 };
 
 
-export default function NewTweetComponent(props) {
+export default function NewTweet(props) {
     const initialState = '';
     const [text, setText] = useState(initialState);
 
@@ -38,7 +38,7 @@ export default function NewTweetComponent(props) {
                 <div className="tweet-container-header-title">
                     <h2>Home</h2>
                     <button className="tweeter-default-button">
-                        <img src={stars} width="20"/>
+                        <img alt="" src={stars} width="20"/>
                     </button>
                 </div>
                 <div className="tweet-container-header-context">
@@ -63,6 +63,6 @@ export default function NewTweetComponent(props) {
     );
 }
 
-NewTweetComponent.propTypes = {
+NewTweet.propTypes = {
     onAddTweet: PropTypes.func
 };

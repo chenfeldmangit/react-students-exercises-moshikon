@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ButtonComponent from "../../../shared/components/ButtonComponent";
 import monk from '../../../assets/monk.svg';
 import envelope from '../../../assets/envelope.svg';
@@ -12,11 +11,13 @@ import list from '../../../assets/list.svg';
 import ellipsis from '../../../assets/ellipsis.svg';
 import { Link } from "react-router-dom";
 
-class LeftSideBarComponent extends Component {
+class LeftSideBar extends Component {
     render() {
         return (<div className="left-side-bar">
-            <ButtonComponent class={'tweeter-default-button'} src={twitter}/>
             <Link to='/'>
+            <ButtonComponent class={'tweeter-default-button'} src={twitter}/>
+            </Link>
+            <Link to='/home'>
                 <ButtonComponent class={'tweeter-default-button'} src={home} title={"Home"}/>
             </Link>
             <ButtonComponent class={'tweeter-default-button'} src={telescope} title={"Explore"}/>
@@ -35,6 +36,6 @@ class LeftSideBarComponent extends Component {
     }
 }
 
-LeftSideBarComponent.propTypes = {};
+LeftSideBar.propTypes = {};
 
-export default LeftSideBarComponent;
+export default LeftSideBar;

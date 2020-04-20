@@ -289,10 +289,12 @@
 }
 
 @media (max-width: 1400px) {
-  .left-side-bar {
-    display: none;
-  }
-  .right-side-bar {
-    display: none;
+  #twitter {
+    .left-side-bar {
+      display: none;
+    }
+    .right-side-bar {
+      display: none;
+    }
   }
 }

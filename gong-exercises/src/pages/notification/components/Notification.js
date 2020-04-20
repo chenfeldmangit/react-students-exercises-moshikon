@@ -14,11 +14,11 @@ function Notification({ notification }) {
     return (
         <div className='tweet-container'>
             {notification.type === 'follow' ? (<>
-                <img src={notification.user.img} className="profile-image"/>
+                <img src={notification.user.img} className="profile-image" alt=""/>
                 <span>{notification.user.name} followed you</span></>) : ''}
             {notification.type === 'like' ?
                 <>
-                    <img src={notification.user.img} className="profile-image"/>
+                    <img src={notification.user.img} className="profile-image" alt=""/>
                     <span>{notification.user.name} liked your Tweet <p>{notification.text}</p></span></> : ''}
             {/*<hr/>*/}
         </div>

@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Notification from "./Notification";
-import monk from "../../../assets/monk.svg";
 
 NotificationPage.propTypes = {};
 

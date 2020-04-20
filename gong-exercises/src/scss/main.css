@@ -257,11 +257,10 @@
 }
 
 @media (max-width: 1400px) {
-  .left-side-bar {
+  #twitter .left-side-bar {
     display: none;
   }
-
-  .right-side-bar {
+  #twitter .right-side-bar {
     display: none;
   }
 }

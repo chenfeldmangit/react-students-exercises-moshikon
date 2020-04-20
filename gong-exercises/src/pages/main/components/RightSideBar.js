@@ -3,7 +3,7 @@ import BoxComponent from "../../../shared/components/BoxComponent";
 import SearchBoxComponent from "../../../shared/components/SearchBoxComponent";
 import telescope from '../../../assets/telescope.svg';
 
-class RightSideBarComponent extends Component {
+class RightSideBar extends Component {
     constructor(props) {
         super(props);
         this.state = { searchText: '' }
@@ -34,6 +34,6 @@ class RightSideBarComponent extends Component {
     }
 }
 
-RightSideBarComponent.propTypes = {};
+RightSideBar.propTypes = {};
 
-export default RightSideBarComponent;
+export default RightSideBar;
