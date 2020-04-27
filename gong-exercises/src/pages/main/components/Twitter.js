@@ -7,6 +7,7 @@ import loginContainer from "../../login/containers/LoginContainer";
 import monk from '../../../assets/monk.svg';
 import { Route, Switch } from 'react-router-dom';
 import NewsFeedContainer from "../../home/containers/NewsFeedContainer";
+import LeftSideBarContainer from "../containers/LeftSideBarContainer";
 
 export default function Twitter(props) {
     console.log('Twitter load');
@@ -40,7 +41,7 @@ export default function Twitter(props) {
     );
     return (
         <>
-            <LeftSideBar/>
+            <LeftSideBarContainer/>
             {renderMainPage()}
             <RightSideBar updateTweets={setSearchText}/>
         </>

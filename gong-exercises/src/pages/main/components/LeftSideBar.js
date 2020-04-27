@@ -22,7 +22,7 @@ class LeftSideBar extends Component {
             </Link>
             <ButtonComponent class={'tweeter-default-button'} src={telescope} title={"Explore"}/>
             <Link to='/notifications'>
-                <ButtonComponent class={'tweeter-default-button'} src={notification} title={"Notifications"}/>
+                <ButtonComponent class={'tweeter-default-button'} src={notification} title={`Notifications (${this.props.notifications})`}/>
             </Link>
             <ButtonComponent class={'tweeter-default-button'} src={envelope} title={"Messages"}/>
             <ButtonComponent class={'tweeter-default-button'} src={bookmark} title={"Bookmarks"}/>

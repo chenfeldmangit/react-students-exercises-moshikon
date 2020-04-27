@@ -17,7 +17,8 @@ export default function NewsFeed(props) {
         // deep copy
         const newTweets = JSON.parse(JSON.stringify(tweets));
         newTweets[tweetToUpdateIndex].like = !newTweets[tweetToUpdateIndex].like;
-        props.likeTweet(newTweets);
+        const numOfNotifications = props.newsFeed.notifications + 1;
+        props.likeTweet(newTweets, numOfNotifications);
     };
 
     const addTweet = (tweet) => {
@@ -36,11 +37,10 @@ export default function NewsFeed(props) {
         props.setTweet(tweetsUpdated);
     };
 
-
     return (
         <div className="notification-container">
             <NewTweet onAddTweet={addTweet}/>
-            {!tweets ? <div id='loading'>YOUR FIRST TWEET ARE WAITING!</div> : tweets.filter(({ textarea }) => {
+            {(!tweets || props.newsFeed.loading) ? <div id='loading'>LOADING....</div> : tweets.filter(({ textarea }) => {
                 return textarea.includes(props.searchText)
             }).map((tweet) => <Tweet tweet={tweet} onLikeTweet={onLikeTweet}
                                      key={tweet.tweetId}/>)}
